@@ -1,0 +1,56 @@
+# Autofilled by tools/new_project_layout/probe_disc.py from your legal dump.
+# Review before shipping. Runtime quirks / overlay seeds still need hand work.
+
+[game]
+name = "Tail Concerto"
+id = "SLUS-00660"
+players = 2
+exe = "disc/SLUS_006.60"
+disc = "disc/Tail Concerto (USA).cue"
+load_address = "0x80010000"
+entry_pc = "0x8007E384"
+text_size = "0x000CA800"
+stack_base = "0x801FFFF0"
+
+# Digests are for data Track 01 (first BINARY FILE / TRACK 01).
+[prepare_disc]
+out_dir = "disc"
+bin_name = "Tail Concerto (USA) (Track 1).bin"
+cue_name = "Tail Concerto (USA).cue"
+boot_exe = "SLUS_006.60"
+known_sizes = [596434272]
+known_md5 = [
+  "bc9c9e0ff03e13b7762aacfda2a82041",
+]
+known_sha1 = [
+  "d52bc3ff4cfcbbb9ed68d3299596dcd3213b1971",
+]
+known_crc32 = [
+  "02d2d3b6",
+]
+
+[recompiler]
+bios_config = "psxrecomp/bios/SCPH1001.toml"
+seeds = "seeds/ghidra_funcs.txt"
+out_dir = "generated"
+strict = true
+
+[runtime]
+openbios = false
+window_title = "Tail Concerto Recompiled"
+memcard_dir = "saves"
+overlay_cache = true
+
+[video]
+renderer = "opengl"
+aspect_ratio = "4:3"
+
+[controller]
+default_mode = "digital"
+
+# Online mount gate: digests + track count + optional TOC fingerprint
+# (see docs/NETPLAY.md).
+[netplay]
+require_cue = true
+required_tracks = 2
+required_disc_fp = "221316159329b35dc50e76119db5edc9c57ff61b98968dab82f26f963123fc64"
